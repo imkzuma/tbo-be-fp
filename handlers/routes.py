@@ -15,8 +15,13 @@ def configure_routes(app):
     @cross_origin()
     def parser():
         requestString = request.get_json()
+
         string = requestString['string']
-        result = cyk.is_accepted(string)
+        
+        result = cyk.cekString(string)
+        checker = cyk.cekKebenaranKata(string)
+
         return jsonify({
-            'result': result
+            'result': result,
+            'checker': checker,
         })
